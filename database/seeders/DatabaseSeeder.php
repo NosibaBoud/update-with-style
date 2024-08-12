@@ -21,11 +21,5 @@ class DatabaseSeeder extends Seeder
             $names=[
                 'IT', 'Medicine',
             ];
-
-            foreach($names as $name){
-                department::create([
-                    'name' => $name,
-                ]);
-            }
         }
     }

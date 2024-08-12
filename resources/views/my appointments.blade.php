@@ -117,8 +117,8 @@
   <main>
     <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
       about us and contact us here
+    
     </div>
-    <!--<img src="C:\Users\HP\Pictures\hand-scientist-test-tube-flask-260nw-1879988884.webp" class="img-thumbnail" alt="...">-->
   </main>
 </div>
 <footer>

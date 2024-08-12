@@ -1,21 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full bg-grey-100">
+<html class="h-full bg-gray-100">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-  <body class="h-full">
-  
-  <!--
-  This example requires updating your template:
-
-  ```
-  <html class="h-full bg-gray-100">
-  <body class="h-full">
-  ```
--->
+<body class="h-full">
 <div class="min-h-full">
   <nav class="bg-gray-800">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -51,7 +42,7 @@
                 <button type="button" class="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                   <span class="absolute -inset-1.5"></span>
                   <span class="sr-only">Open user menu</span>
-                  <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                  <!--<img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">-->
                 </button>
               </div>
 
@@ -108,17 +99,38 @@
       </div>
     </div>
   </nav>
-
   <header class="bg-white shadow">
     <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Welcome</h1>
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">medical test list</h1>
     </div>
   </header>
   <main>
-    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-      about us and contact us here
+  <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+  <div class="container">
+  <div class="row align-items-start">
+    <div class="col">
+    <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+      @foreach($tests as $test)
+      <div class="col">
+    <div class="card">
+  <div class="card-body">
+      <il>
+        <a href="/tests list/{{$test['id']}}">
+        <strong>{{$test['name']}}</strong>
+      </a>
+      </il>
+
+      </div>
+</div>
     </div>
-    <!--<img src="C:\Users\HP\Pictures\hand-scientist-test-tube-flask-260nw-1879988884.webp" class="img-thumbnail" alt="...">-->
+      @endforeach
+      
+      
+      </div>
+    </div>
   </main>
 </div>
 <footer>
@@ -126,3 +138,4 @@ contact us
 </footer>
 </body>
 </html>
+   

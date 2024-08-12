@@ -111,14 +111,25 @@
 
   <header class="bg-white shadow">
     <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Welcome</h1>
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">results</h1>
     </div>
   </header>
   <main>
     <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-      about us and contact us here
+    <form class="row g-3">
+  <div class="col-auto">
+    <label for="staticEmail2" class="visually-hidden">Email</label>
+    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="email@example.com">
+  </div>
+  <div class="col-auto">
+    <label for="inputPassword2" class="visually-hidden">Password</label>
+    <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+  </div>
+  <div class="col-auto">
+  <button type="button" class="btn btn-primary">Primary</button>
+  </div>
+</form>
     </div>
-    <!--<img src="C:\Users\HP\Pictures\hand-scientist-test-tube-flask-260nw-1879988884.webp" class="img-thumbnail" alt="...">-->
   </main>
 </div>
 <footer>
