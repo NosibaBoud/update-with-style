@@ -1,6 +1,8 @@
 <?php
 
-
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\logoutcontroller;
 use App\Models\mtest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -32,9 +34,12 @@ Route::get('/tests/{id}', function ($id) {
             return view('test',['test'=>$test]);
 
 }); 
-
+Route::post('/logout',[logoutcontroller::class,'destroy']);
+//route::get('/register',[RegisterController::class,'create']);
+//route::post('/register',[RegisterController::class,'store']);//post=requst
+//route::get('/login',[LoginController::class,'create']);
+//route::post('/login',[RegisterController::class,'store']);
 //Route::group(['middleware' => ['auth']], function ()
-
  //{     
 
 Auth::routes();
