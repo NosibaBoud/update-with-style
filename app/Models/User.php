@@ -22,8 +22,15 @@ class User extends Authenticatable
         'phone_number',
         'email',
         'password',
-        'type',
+        
     ];
+    public function tests() {
+        return $this->hasMany(mtest::class);
+    }
+    public function mytests()
+{
+    return $this->hasMany(mytests::class);
+}
 
     /**
      * The attributes that should be hidden for serialization.
