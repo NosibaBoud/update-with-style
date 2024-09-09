@@ -14,7 +14,31 @@
       </div>
     </header>
   <main>
- 
+ <!--about section start-->
+ <section id="about">
+  <div class="container">
+    <div class="title">
+      <p>At our Medical Lab, we are dedicated to providing top-quality healthcare services to our patients.</p>
+      <p> With a commitment to excellence and precision with<span class="primary-txt"> More than 10+ Years of experiance.</span></P>
+    <!-- <hr>-->
+      <h1>-</h1>
+    </div>
+    <div class="about-content">
+      
+        <h1>About Us</h1>
+        <p>
+        Our online platform allows you to conveniently access your test results from the comfort of your home.
+        </p>
+        <p>Also  offer a seamless appointment scheduling system that empowers you to book appointments with our experienced healthcare professionals with ease.
+        </p>
+      </div>
+      <div class="style-img">
+      <img src="/images/image-55.jpg" alt="" class="im">
+</div>
+    </div>
+  </div>
+ </section>
+
   </main>
   </body>
   

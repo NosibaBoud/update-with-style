@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\logoutcontroller;
 use App\Http\Controllers\testcontroller;
+use App\Http\Controllers\Usertestscontroller;
 use App\Models\mtest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -17,14 +18,14 @@ Route::get('/results', function () {
     Route::get('/ make appointment', function () {
         return view('make appointment');
         });
-    Route::get('/my tests',[testcontroller::class,'show']); 
-    
+Route::post('/my tests/{id}',[Usertestscontroller::class,'store'])->name('mytest.store'); 
+   
         Route::get('/tests list', function () {
             return view('tests list',[
                 'tests'=>mtest::all(),
                'tests' => mtest::orderBy('created_at', 'asc')->simplepaginate(3)
         ]);
-      
+       
          });
 Route::get('/test/{id}', function ($id) {
     $test=mtest::find($id);
@@ -34,7 +35,7 @@ Route::post('/logout',[logoutcontroller::class,'destroy']);
 Route::get('/search',[ testcontroller::class,'search']);
 Route::group(['middleware' => ['auth']], function ()
  {
-Route::get('/add_test/{id}',[testcontroller::class,'addtest']);
+//Route::get('/add_test/{id}',[testcontroller::class,'addtest']);
 });
 
 Auth::routes();
