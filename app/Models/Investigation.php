@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class mtest extends Model
+class Investigation extends Model
 {
     use HasFactory;
-  //  protected $table='mtests';
+
     protected $fillable=[
         'name',
         'details',
@@ -17,15 +17,5 @@ class mtest extends Model
         'instructions',
         'status',
         
-        
-
     ];
-    public function user(){
-        return $this->belongsTo(user::class);
-    }
-    public function test(){
-        return $this->belongsTo(mytests::class);
-    }
-    
-
 }
