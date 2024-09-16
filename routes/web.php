@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\logoutcontroller;
 use App\Http\Controllers\testcontroller;
 use App\Http\Controllers\Usertestscontroller;
+use App\Models\Investigation;
 use App\Models\mtest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -22,13 +23,13 @@ Route::post('/my tests/{id}',[Usertestscontroller::class,'store'])->name('mytest
    
         Route::get('/tests list', function () {
             return view('tests list',[
-                'tests'=>mtest::all(),
-               'tests' => mtest::orderBy('created_at', 'asc')->simplepaginate(3)
+                'tests'=>Investigation::all(),
+               'tests' => Investigation::orderBy('created_at', 'asc')->simplepaginate(3)
         ]);
        
          });
 Route::get('/test/{id}', function ($id) {
-    $test=mtest::find($id);
+    $test = Investigation::find($id);
         return view('test',['test'=>$test]);
 }); 
 Route::post('/logout',[logoutcontroller::class,'destroy']);

@@ -2,39 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\mtest;
-use App\Models\mytests;
-use Faker\Guesser\Name;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use PhpParser\Node\Expr\New_;
-use SebastianBergmann\CodeCoverage\Report\Xml\Tests;
+use App\Models\Investigation;
 
 class testcontroller extends Controller
 {
 
-public function search()
-{
-    $search_text=$_GET['search'];
-    $tests=mtest::where('name','like','%'.$search_text.'%')->get();
-    return view('search',compact('tests'));
+    public function search()
+    {
+        $search_text=$_GET['search'];
+        $tests=Investigation::where('name','like','%'.$search_text.'%')->get();
+        return view('search',compact('tests'));
 
-}
+    }
 
-public function addtest($id)
-{
-    $test = mtest::find($id); // get test details by id
+    public function addtest($id)
+    {
+        $myInvestigations = Investigation::find($id); // get test details by id
 
-   session()->push('mytests',$test);
+        session()->push('mytests',$myInvestigations);
 
-    return redirect()->back();
-}
+        return redirect()->back();
+    }
 
-public function show()
-{
-    //$test=mtest::find($id);
-    $test = session()->get('tests', []);
-   return view('my tests',compact('test'));
-}
+    public function show($id)
+    {
+        $Investigation = Investigation::find($id);
+        $Investigation = session()->get('Investigations', []);
+
+        return view('my Investigations', compact('Investigation'));
+    }
 }
 

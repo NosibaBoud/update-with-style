@@ -25,11 +25,11 @@ class User extends Authenticatable
         
     ];
     public function tests() {
-        return $this->hasMany(mtest::class);
+        return $this->hasMany(Investigation::class);
     }
     public function mytests()
 {
-    return $this->hasMany(mytests::class);
+    return $this->hasMany(UserInvestigation::class);
 }
 
     /**
