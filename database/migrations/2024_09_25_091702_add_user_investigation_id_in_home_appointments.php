@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_results', function (Blueprint $table) {
-            $table->id();
-           // $table->foreignId('user_investigation_id');
-            $table->string('file_path');
-            $table->timestamps();
+        Schema::table('home_appointments', function (Blueprint $table) {
+            $table->foreignId('user_investigation_id');
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_results');
+        Schema::table('home_appointments', function (Blueprint $table) {
+            //
+        });
     }
 };

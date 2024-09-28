@@ -11,18 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_investigations', function (Blueprint $table) {
+        Schema::create('home_appointments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('investigation_id');
-            
-            $table->enum('status', [
-                'Confirmed',
-                'Pending',
-                'Cancelled'
-            ])->default('Pending');
-
-            $table->foreignId('lab_technician_id')->nullable();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email');
+            $table->string('address');
+            $table->integer('phone_number');
+            $table->enum('gender',['female','male']);
+            $table->integer('age');
+            $table->time('time');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_investigations');
+        Schema::dropIfExists('home_appointments');
     }
 };

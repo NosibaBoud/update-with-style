@@ -3,23 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\Models\Investigation;
-use App\Models\mtest;
-use App\Models\mytests;
-use app\Models\User;
 use App\Models\UserInvestigation;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class Usertestscontroller extends Controller
 {
-  public function store($id) { 
-    $test=Investigation::find($id);
+  public function addMytest($id)
+  {
+      $userId = Auth::id();
+  
+      UserInvestigation::create([
+     'investigation_id' => $id,
+      'user_id' => $userId,
+  ]);
+  return redirect()->back();
+}
+public function show(Request $request)
+{
+  
+  $userId = Auth::id();
+         
+  $test = UserInvestigation::where('user_id', $userId)->get();
+ 
+ // $test = mytests::all();
+ // $userId = Auth::id();
 
-    UserInvestigation::create([
-      'investigation_id'=>$id,
-      'user_id'=>"1",
-    
-    ]);
-    
-    return redirect()->back();
-  }
+return view('my tests',['tests' => $test]);
+}
+public function delete(Investigation $investigation){
+  $this->authorize('delete', $investigation);
+
+  $investigation->likes()->delete();
+
+  $investigation->delete();
+
+  return redirect()->back();
+}
 }

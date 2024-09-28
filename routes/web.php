@@ -6,7 +6,7 @@ use App\Http\Controllers\logoutcontroller;
 use App\Http\Controllers\testcontroller;
 use App\Http\Controllers\Usertestscontroller;
 use App\Models\Investigation;
-use App\Models\mtest;
+use App\Models\UserInvestigation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -16,11 +16,12 @@ Route::get('/home', function () {
 Route::get('/results', function () {
     return view('results');
     });
-    Route::get('/ make appointment', function () {
+    Route::post('/make appointment', function () {
         return view('make appointment');
         });
-Route::post('/my tests/{id}',[Usertestscontroller::class,'store'])->name('mytest.store'); 
-   
+//Route::post('/my tests/{id}',[Usertestscontroller::class,'store'])->name('mytest.store'); 
+Route::get('/my tests',[Usertestscontroller::class,'show'])->name('mytests.show');; 
+
         Route::get('/tests list', function () {
             return view('tests list',[
                 'tests'=>Investigation::all(),
@@ -32,13 +33,17 @@ Route::get('/test/{id}', function ($id) {
     $test = Investigation::find($id);
         return view('test',['test'=>$test]);
 }); 
+Route::delete('/investigation/{investigation}/delete', [Usertestscontroller::class, 'delete']);
 Route::post('/logout',[logoutcontroller::class,'destroy']);
 Route::get('/search',[ testcontroller::class,'search']);
 Route::group(['middleware' => ['auth']], function ()
  {
-//Route::get('/add_test/{id}',[testcontroller::class,'addtest']);
-});
+    Route::post('/add_test/{id}',[Usertestscontroller::class,'addMytest']);
 
+});
+    Route::post('/next', function () {
+        return view('appointment2');
+        });
 Auth::routes();
  
 //->middleware(['Auth','verified']);
