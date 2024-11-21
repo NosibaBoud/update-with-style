@@ -8,7 +8,7 @@ class logoutcontroller extends Controller
 {
     public function destroy(){
         Auth::logout();
-    
-        return redirect('/home');
+   
+        return redirect('/');
     }
 }

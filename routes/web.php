@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\investigationsearchcontroller;
 use App\Http\Controllers\logoutcontroller;
 use App\Http\Controllers\testcontroller;
 use App\Http\Controllers\Usertestscontroller;
@@ -10,7 +11,7 @@ use App\Models\UserInvestigation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('home');
 });
 Route::get('/results', function () {
@@ -19,10 +20,10 @@ Route::get('/results', function () {
     Route::post('/make appointment', function () {
         return view('make appointment');
         });
-//Route::post('/my tests/{id}',[Usertestscontroller::class,'store'])->name('mytest.store'); 
-Route::get('/my tests',[Usertestscontroller::class,'show'])->name('mytests.show');; 
 
-        Route::get('/tests list', function () {
+Route::get('/mytests',[Usertestscontroller::class,'show'])->name('mytests.show');; 
+
+        Route::get('/testslist', function () {
             return view('tests list',[
                 'tests'=>Investigation::all(),
                'tests' => Investigation::orderBy('created_at', 'asc')->simplepaginate(3)
@@ -41,9 +42,26 @@ Route::group(['middleware' => ['auth']], function ()
     Route::post('/add_test/{id}',[Usertestscontroller::class,'addMytest']);
 
 });
-    Route::post('/next', function () {
+    Route::post('/appointmen/next', function () {
         return view('appointment2');
         });
+        Route::get('/admindashboard', function () {
+            return view('admindashboard');
+            });
+            Route::get('/investigations', function () {
+                return view('investigations',[
+                    'tests'=>Investigation::all(),
+                   'tests' => Investigation::orderBy('created_at', 'asc')->simplepaginate(3)
+            ]);
+           } );
+               Route::get('/investigation/{id}', function ($id) {
+                 $test = Investigation::find($id);
+                return view('investigation',['test'=>$test]);   
+                }); 
+                //Route::get('/investigations/search', [testcontroller::class, 'investigationsearch']);
+                Route::post('/investigation/create', function(){
+                    return view('admindashboard.createinvestigation');
+                });
 Auth::routes();
  
 //->middleware(['Auth','verified']);

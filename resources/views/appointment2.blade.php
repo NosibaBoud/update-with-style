@@ -43,7 +43,7 @@ $(function() {
   $('input[name="datetimes"]').daterangepicker({
     timePicker: true,
     singleDatePicker: true, // Set to true to allow selecting only a single date
-    startDate: moment().startOf('hour'),
+    startDate:moment('2024-11-15 10:00', 'YYYY-MM-DD HH:mm'),
     locale: {
       format: 'M/DD hh:mm A'
     }

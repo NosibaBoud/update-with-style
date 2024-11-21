@@ -14,15 +14,17 @@ return new class extends Migration
         Schema::create('home_appointments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
+            $table->foreignId('user_investigation_id');
+            $table->boolean('gender');
             $table->foreignId('investigation_id');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email');
             $table->string('address');
             $table->integer('phone_number');
-            $table->enum('gender',['female','male']);
             $table->integer('age');
-            $table->time('time');
+            $table->string('time');
+            $table->string('date');
             $table->timestamps();
         });
     }
