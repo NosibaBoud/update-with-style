@@ -39,4 +39,13 @@ public function delete(Investigation $investigation){
 
   return redirect()->back();
 }
+public function destroy($id)
+    {
+        // Find the item by ID and delete it
+        $tests = Investigation::findOrFail($id);
+        $tests->delete();
+
+        // Redirect back with a success message
+        return redirect()->route('mytests.show')->with('success', 'Item deleted successfully!');
+    }
 }

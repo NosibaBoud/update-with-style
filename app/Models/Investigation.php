@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Investigation extends Model
 {
     use HasFactory;
-
     protected $fillable=[
         'name',
         'details',
@@ -16,6 +15,7 @@ class Investigation extends Model
         'expected_time_for_test',
         'instructions',
         'status',
+        'can_taken',
         
     ];
 }

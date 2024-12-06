@@ -22,6 +22,7 @@
     <li class="list-group-item" style="background-color: snow;">expected time for test: {{$test->expected_time_for_test}}</li>
     <li class="list-group-item" style="background-color:snow;">status: {{$test->status}}</li>
   </ul>
+  
   <form  method="POST" action="{{url('/add_test',$test->id)}}">
     @csrf
     <div class="card-body" style="text-align: right;">
@@ -30,6 +31,7 @@
   </div>
 </div>
 </form>
+
   </div>
 </dive>
       </div>

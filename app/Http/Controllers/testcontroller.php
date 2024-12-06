@@ -7,6 +7,20 @@ use App\Models\Investigation;
 class testcontroller extends Controller
 {
 
+    public function index(){
+        $tests=Investigation::all();
+           $tests = Investigation::orderBy('created_at', 'asc')->simplepaginate(3);
+           return view('admindashboard.investigations',compact('tests'));
+    }
+    public function create()
+{
+    return view('admindashboard.createinvestigation');
+}
+public function edit()
+{
+    return view('admindashboard.editinvestigation');
+}
+
     public function search()
     {
         $search_text=$_GET['search'];
@@ -14,6 +28,7 @@ class testcontroller extends Controller
         return view('search',compact('tests'));
 
     }
+
     //public function investigationsearch()
     //{
        // $search_text=$_GET['query'];
@@ -21,5 +36,28 @@ class testcontroller extends Controller
        // return view('admindashboard.investigationsearch',compact('investigations'));
 
     //}
+    public function store(Request $request){
+        $this->validate($request, [
+            'name' => ['required', 'string', 'min:3', 'max:1000'],
+            'details' => ['required', 'string', 'min:3', 'max:1000'],
+            'price' => ['required', 'double', 'min:2', 'max:10'],
+            'expected_time_for_test' => ['required', 'string', 'min:3', 'max:1000'],
+            'status' => ['required', 'string', 'min:3', 'max:1000'],
+            'can_taken' => ['required', 'boolean', 'min:3', 'max:1000'],
+        ]);
+        Investigation::create([
+            'name'=>$request->name,
+            'details'=>$request->details,
+            'price'=>$request->price,
+            'expected_time_for_test'=>$request->expected_time,
+            'instructions'=>$request->instructions,
+            'status'=>$request->status,
+            'can_taken'=>$request->can_taken,
+        ]);
+        return redirect()->back();
+    }
+   
+
+
 }
 

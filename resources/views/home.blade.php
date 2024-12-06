@@ -7,8 +7,9 @@
 </head>
   <body>
     <header>
-      
       <div class="content">
+        <img src="{{URL('/images/image2.jpg')}}" alt="">
+  </div>
         <h1>welcome to our <span class="primary-text" > laboratory </span>website</h1>
         <p> here we provide all you want to know about our medical tests </p>
       </div>
@@ -32,11 +33,11 @@
         <p>Also  offer a seamless appointment scheduling system that empowers you to book appointments with our experienced healthcare professionals with ease.
         </p>
       </div>
-      <div class="style-img">
-      <img src="/images/image-55.jpg" alt="" class="im">
-</div>
     </div>
-  </div>
+    <header>
+     
+    </header>
+
  </section>
 
   </main>

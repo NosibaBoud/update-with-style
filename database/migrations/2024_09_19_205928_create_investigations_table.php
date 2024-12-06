@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('expected_time_for_test');
             $table->string('instructions');
             $table->string('status');
+            $table->boolean('can_taken');
             $table->timestamps();
         });
     }
