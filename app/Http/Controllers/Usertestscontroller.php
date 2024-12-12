@@ -42,10 +42,10 @@ public function delete(Investigation $investigation){
 public function destroy($id)
     {
         // Find the item by ID and delete it
-        $tests = Investigation::findOrFail($id);
+        $tests = Investigation::find($id);
         $tests->delete();
 
         // Redirect back with a success message
-        return redirect()->route('mytests.show')->with('success', 'Item deleted successfully!');
+        return view('my tests')->with('success', 'Item deleted successfully!');
     }
 }

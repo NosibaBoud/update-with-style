@@ -53,62 +53,62 @@
                             <h1>Create New Investigation</h1>
 <br>
 <body>
-<div class="container">
-<form>
-  <div class="row">
-    <div class="form-group">
-        <label>Investigation Name</label>
-        <input type="text" class="form-control is-invalid" id="name" name="name" placeholder="insert name" required>
+  <div class="container">
+    <form method="POST" action="/investigations/store">
+      @csrf 
+      <div class="row">
+      <div class="form-group">
+      
+          <label>Investigation Name</label>
+          <input type="text" class="form-control is-invalid" id="name" name="name" placeholder="insert name" required>
+        </div>
+        
+        <div class="form-group">
+          <label>investigation instructions</label>
+          <input type="text" class="form-control is-invalid" id="instructions" name="instructions" placeholder="insertinstructions" required>
       </div>
       <div class="form-group">
-        <label>investigation instructions</label>
-        <input type="text" class="form-control is-invalid" id="instructions" name="instructions" placeholder="insertinstructions" required>
+        <label>Price</label>
+          <input type="text" class="form-control is-invalid" id="price" name="price" placeholder="insert price" required>
+        </div>
     </div>
-    <div class="form-group">
-      <label>Price</label>
-        <input type="text" class="form-control is-invalid" id="price" name="price" placeholder="insert price" required>
+    <div class="row">
+      <div class="form-group">
+        <label>Investigation Details</label>
+        <textarea type="text" class="form-control is-invalid" name="details" id="details"  placeholder="insert details" rows="4" required></textarea>
+      </div>
+      <div class="form-group">
+        <label>expected time for investigation</label>
+        <input type="text" class="form-control is-invalid" id="expected_time_for_test" name="expected_time_for_test" placeholder="insert expected time" required>
+      </div>
+      <div class="form-group">
+        <label>status</label>
+        <input type="text" class="form-control is-invalid" id="status" name="status" placeholder="insert status" required>
       </div>
   </div>
-  <div class="row">
-    <div class="form-group">
-      <label>Investigation Details</label>
-      <textarea type="text" class="form-control is-invalid" name="details" id="details"  placeholder="insert details" rows="4" required></textarea>
-    </div>
-    <div class="form-group">
-      <label>expected time for investigation</label>
-      <input type="text" class="form-control is-invalid" id="expected_time_for_test" name="expected_time_for_test" placeholder="insert expected time" required>
-    </div>
-    <div class="form-group">
-      <label>status</label>
-      <input type="text" class="form-control is-invalid" id="status" name="status" placeholder="insert status" required>
-    </div>
-</div>
-<div class="form-group">
-  <label>choose if can teken form home:</label>
-<div class="form-check">
-<input class="form-check-input" value="1" type="radio" name="can_taken" id="can_taken1">
-<label class="form-check-label" for="can_taken1">
-  Yes
-</label>
-</div>
-<div class="form-check">
-<input class="form-check-input" value="0" type="radio" name="can_taken" id="can_taken2" checked>
-<label class="form-check-label" for="can_taken2">
-  No
-</label>
-</div>
-</div>
-<button type="submit" class="save-btn">Save</button>
-</form>
-</div>
-</body>            
- </div>
- </header>
- </div>
- </div>
- </div>    
+  <div class="form-group">
+    <label>choose if can teken form home:</label>
+  <div class="form-check">
+  <input class="form-check-input" value="1" type="radio" name="can_taken" id="can_taken1">
+  <label class="form-check-label" for="can_taken1">
+    Yes
+  </label>
   </div>
- 
-</body>
-
-
+  <div class="form-check">
+  <input class="form-check-input" value="0" type="radio" name="can_taken" id="can_taken2" checked>
+  <label class="form-check-label" for="can_taken2">
+    No
+  </label>
+  </div>
+  </div>
+  <button type="submit" class="save-btn">Save</button>
+  </form>
+  </div>
+  </body>            
+   </div>
+   </header>
+   </div>
+   </div>
+   </div>    
+    </div>
+  </body>

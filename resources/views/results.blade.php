@@ -1,33 +1,25 @@
 @extends('index')
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 @section('content') 
-
-  <header class="bg-white shadow">
-    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Results</h1>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <!--styles-->
+  <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+      <h1>Search Medical Test Results</h1>
   </header>
-  <main>
-    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-    <form class="row g-3">
-  
-  <div class="col-auto">
-    <label for="inputPassword2" class="visually-hidden">Receipt number</label>
-    <input type="text" class="form-control" id="inputtext2" placeholder="enter Receipt number">
-  </div>
-  <div class="col-auto">
-    <button class="btn btn-primary" type="submit" id="button-addon2">search</button>
- 
-  </div>
-</form>
-    </div>
+  <main class="search-container">
+      <form class="search-form" action="#" method="get">
+          <label for="testSearch"> Please Enter Result ID</label>
+          <input type="text" id="testSearch" name="query" placeholder="Search by Test ID or Patient Name..." required>
+          <button type="submit">Search</button>
+      </form>
   </main>
-</div>
-
- 
-
-
 </body>
 </html>
 @endsection

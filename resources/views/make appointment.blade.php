@@ -1,54 +1,62 @@
 @extends('index')
-<script src="https://cdn.tailwindcss.com"></script>
 @section('content') 
 
-      <div class="border-b border-gray-900/10 pb-12">
-        <h2 class="">Personal Information</h2>
-        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-          <div class="sm:col-span-3">
-            <label for="first_name" class="block text-sm font-medium leading-6 text-gray-900">First name</label>
-            <div class="mt-2">
-              <input type="text" name="first_name" id="first_name" style="width: 300px;" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-            </div>
-          </div>
-          <div class="sm:col-span-3">
-            <label for="last_name"  class="block text-sm font-medium leading-6 text-gray-900">Last name</label>
-            <div class="mt-2">
-              <input type="text" name="last_name" id="last_name" style="width: 300px;" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-            </div>
-          </div>
-          <div class="sm:col-span-4">
-            <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
-            <div class="mt-2">
-              <input id="email" name="email" type="email" style="width: 300px;" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-            </div>
-          </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Appointment Booking</title>
+    <link href="/css/style.css" rel="stylesheet">
   
-          <div class="col-span-full">
-            <label for="address" class="block text-sm font-medium leading-6 text-gray-900">Street address</label>
-            <div class="mt-2">
-              <input type="text" name="address" id="address" style="width: 500px;" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+</head>
+<body>
+  <div class="container">
+    <h1>Book a Home Appointment</h1>
+    <main class="form-container">
+        <form class="appointment-form" action="#" method="post">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
             </div>
-          </div>
-          <div class="sm:col-span-2">
-            <label for="phone_number" class="block text-sm font-medium leading-6 text-gray-900">Phone Number</label>
-            <div class="mt-2">
-              <input type="text" name="phone_number" id="phone_number" style="width: 300px;" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
             </div>
-          </div>
-        </div>
-      </div>  
-        
-        <form  method="POST" action="{{url('/appointmen/next')}}">
-          @csrf
-          <div class="mt-6 flex items-center justify-end">
-            <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Next</button>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
             </div>
-      </form>
-      </div>
-    </div> 
-    </div>
-    </div>
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+                    <option value="" disabled selected>Select your gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" name="age" placeholder="Enter your age" min="0" required>
+            </div>
+            <div class="form-group">
+                <label for="appointmentDate">Date</label>
+                <input type="date" id="appointmentDate" name="appointmentDate" required>
+            </div>
+            <div class="form-group">
+                <label for="appointmentTime">Time</label>
+                <input type="time" id="appointmentTime" name="appointmentTime" required>
+            </div>
+            <button type="submit">Book Appointment</button>
+        </form>
+    </main>
+  </div>
+</body>
+</html>
 
   
 @endsection

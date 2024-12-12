@@ -8,7 +8,6 @@ use App\Http\Controllers\testcontroller;
 use App\Http\Controllers\Usertestscontroller;
 use App\Models\Investigation;
 use App\Models\UserInvestigation;
-use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +20,12 @@ Route::get('/results', function () {
     Route::post('/makeappointment', function () {
         return view('make appointment');
         });
-
+        Route::get('/manage/admins',function(){
+            return view('superadmin.manageadmins');
+        });
+        Route::get('/add/admin',function(){
+            return view('superadmin.addadmin');
+        });
 Route::get('/mytests',[Usertestscontroller::class,'show'])->name('mytests.show');
 
         Route::get('/testslist', function () {
@@ -52,7 +56,7 @@ Route::group(['middleware' => ['auth']], function ()
         Route::get('/admindashboard', function () {
             return view('admindashboard.admindashboard');
             });
-            Route::get('/investigations',[testcontroller::class,'index']);
+            Route::get('/investigations',[testcontroller::class,'index'])->name('investigations.index');
             
                Route::get('/investigation/{id}', function ($id) {
                  $test = Investigation::find($id);
@@ -61,9 +65,12 @@ Route::group(['middleware' => ['auth']], function ()
                 //Route::get('/investigations/search', [testcontroller::class, 'investigationsearch']);
                 Route::post('/investigation/create', [testcontroller::class, 'create']);
                 Route::post('/investigations/store',[testcontroller::class,'store']);
-                Route::post('/investigation/edit', [testController::class, 'edit']);
+                Route::get('/investigations/{id}', [testcontroller::class, 'show'])->name('investigations.show');
+                Route::get('/investigations/{id}/edit', [testcontroller::class, 'edit'])->name('investigations.edit');
+                Route::put('/investigations/{id}', [testcontroller::class, 'update'])->name('investigations.update');
                 Route::delete('/investigation/{id}', [Usertestscontroller::class, 'destroy'])->name('investigation.destroy');
-Auth::routes();
+               
+                Auth::routes();
  
 //->middleware(['Auth','verified']);
 

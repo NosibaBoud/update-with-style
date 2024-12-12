@@ -3,17 +3,15 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<link href="/css/main.css" rel="stylesheet">
 <title>Investigations</title>
 @extends('admindashboard.indexadmin')
 @section('content')
-<!------ Include the above in your HEAD tag ---------->
 <head>
     <!--styles-->
-   
+    
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <link href="/css/adminpages.css" rel="stylesheet">
   </head>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-
     <div class="mx-auto max-w-8xl px-4 py-6 sm:px-6 lg:px-8 ">
       <h1 class="text-3xl font-bold tracking-tight text-gray-900">investigations</h1>
     </div>    
@@ -28,11 +26,6 @@
     <div class="container">
     <div class="row align-items-center">
       <div class="col">
-       
-
-
-
-
     </div>
         <br>
       
@@ -56,11 +49,9 @@
                 </div>
                    </td>
                    <td>
-                   <!-- <form  method="POST" action="{{url('/investigation/edit')}}">
-                      @csrf
-                      </form>-->
-                        <button class="button edit">edit</button>
-                  
+                    <a href="/investigation/{{$test->id}}/edit">
+                        <button  class="button edit">edit</button>
+                      </a>
                     <button class="button delete">Delete</button>
                     <a href="/investigation/{{$test->id}}">
                         <button class="button view">view</button>
