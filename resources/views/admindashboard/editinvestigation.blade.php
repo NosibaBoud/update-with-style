@@ -6,7 +6,7 @@
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   
-  <title>edit {{$test->name}} investigation</title>
+  
   <!------ Include the above in your HEAD tag ---------->
   <head>
       <!--styles-->
@@ -53,33 +53,35 @@
   <br>
   <body>
   <div class="container">
+    <form action="{{url('/investigations/$investigation->id/update')}}" method="PUT">
+      @method('PUT')
   <form>
     <div class="row">
       <div class="form-group">
           <label>Investigation Name</label>
-          <input type="text" class="form-control is-invalid" id="name" name="name" placeholder="insert name" required>
+          <input type="text" class="form-control is-invalid" value="{{$investigation->name}}" id="name" name="name" placeholder="insert name" required>
         </div>
         <div class="form-group">
           <label>investigation instructions</label>
-          <input type="text" class="form-control is-invalid" id="instructions" name="instructions" placeholder="insertinstructions" required>
+          <input type="text" class="form-control is-invalid" value="{{$investigation->instructions}}" id="instructions" name="instructions" placeholder="insertinstructions" required>
       </div>
       <div class="form-group">
         <label>Price</label>
-          <input type="text" class="form-control is-invalid" id="price" name="price" placeholder="insert price" required>
+          <input type="text" class="form-control is-invalid" value="{{$investigation->price}}" id="price" name="price" placeholder="insert price" required>
         </div>
     </div>
     <div class="row">
       <div class="form-group">
         <label>Investigation Details</label>
-        <textarea type="text" class="form-control is-invalid" name="details" id="details"  placeholder="insert details" rows="4" required></textarea>
+        <textarea type="text" class="form-control is-invalid" value="{{$investigation->details}}" name="details" id="details"  placeholder="insert details"  required></textarea>
       </div>
       <div class="form-group">
         <label>expected time for investigation</label>
-        <input type="text" class="form-control is-invalid" id="expected_time_for_test" name="expected_time_for_test" placeholder="insert expected time" required>
+        <input type="text" class="form-control is-invalid" value="{{$investigation->expected_time_for_test}}" id="expected_time_for_test" name="expected_time_for_test" placeholder="insert expected time" required>
       </div>
       <div class="form-group">
         <label>status</label>
-        <input type="text" class="form-control is-invalid" id="status" name="status" placeholder="insert status" required>
+        <input type="text" class="form-control is-invalid" value="{{$investigation->status}}" id="status" name="status" placeholder="insert status" required>
       </div>
   </div>
   <div class="form-group">
@@ -99,6 +101,7 @@
   </div>
   <button type="submit" class="save-btn">Save </button>
   </form>
+</form>
   </div>
   </body>            
    </div>

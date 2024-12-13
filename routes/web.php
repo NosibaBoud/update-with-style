@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\investigationsearchcontroller;
 use App\Http\Controllers\logoutcontroller;
 use App\Http\Controllers\testcontroller;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Usertestscontroller;
 use App\Models\Investigation;
 use App\Models\UserInvestigation;
@@ -20,12 +21,9 @@ Route::get('/results', function () {
     Route::post('/makeappointment', function () {
         return view('make appointment');
         });
-        Route::get('/manage/admins',function(){
-            return view('superadmin.manageadmins');
-        });
-        Route::get('/add/admin',function(){
-            return view('superadmin.addadmin');
-        });
+        Route::get('/add/admin',[UserController::class,'create'])->name('admin.create');
+        Route::post('/store/admin',[UserController::class,'store'])->name('admin.store');
+        Route::get('/manage/admins',[UserController::class,'show'])->name('admin.show');
 Route::get('/mytests',[Usertestscontroller::class,'show'])->name('mytests.show');
 
         Route::get('/testslist', function () {
@@ -47,12 +45,6 @@ Route::group(['middleware' => ['auth']], function ()
     Route::post('/add_test/{id}',[Usertestscontroller::class,'addMytest']);
 
 });
-    Route::post('/appointmen/next', function () {
-        return view('appointment2');
-        });
-        Route::get('/nav', function () {
-            return view('nav');
-            });
         Route::get('/admindashboard', function () {
             return view('admindashboard.admindashboard');
             });
@@ -66,8 +58,8 @@ Route::group(['middleware' => ['auth']], function ()
                 Route::post('/investigation/create', [testcontroller::class, 'create']);
                 Route::post('/investigations/store',[testcontroller::class,'store']);
                 Route::get('/investigations/{id}', [testcontroller::class, 'show'])->name('investigations.show');
-                Route::get('/investigations/{id}/edit', [testcontroller::class, 'edit'])->name('investigations.edit');
-                Route::put('/investigations/{id}', [testcontroller::class, 'update'])->name('investigations.update');
+                Route::get('/investigation/{id}/edit', [testcontroller::class, 'edit'])->name('investigations.edit');
+                Route::get('/investigations/{id}/update', [testcontroller::class, 'update'])->name('investigations.update');
                 Route::delete('/investigation/{id}', [Usertestscontroller::class, 'destroy'])->name('investigation.destroy');
                
                 Auth::routes();

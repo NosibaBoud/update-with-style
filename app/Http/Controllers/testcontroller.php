@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Investigation;
+use PHPUnit\Framework\MockObject\Invocation;
 
 class testcontroller extends Controller
 {
@@ -16,11 +17,22 @@ class testcontroller extends Controller
 {
     return view('admindashboard.createinvestigation');
 }
-public function edit()
-{
-    return view('admindashboard.editinvestigation');
+public function edit($id)
+{ 
+    $investigation=Investigation::find($id);
+    return view('admindashboard.editinvestigation',compact('investigation'));
 }
-
+public function update(Request $request,$id)
+{$investigation=Investigation::find($id);
+    $investigation->name = $request->input('name');
+    $investigation->instructions = $request->input('instructions');
+    $investigation->price = $request->input('price');
+    $investigation->details= $request->input('details');
+    $investigation->expected_time_for_test = $request->input('expected_time_for_test');
+    $investigation->status = $request->input('status');
+    $investigation->can_taken = $request->input('can_taken');
+    return redirect('/investigations');
+}
 
     public function search()
     {
@@ -32,9 +44,6 @@ public function edit()
     public function show($id)
     {
         $test = Investigation::find($id);
-
-    
-    
         return view('admindashboard.investigation', compact('test'));;
     }
     //public function investigationsearch()
@@ -67,11 +76,6 @@ public function edit()
 
     }
    
-    public function checkName(Request $request)
-    {
-    
-        return view('admindashboard.investigations', compact('nameExists'));
-    }
 
 }
 

@@ -27,6 +27,9 @@
                 <!-- Admin List Section -->
                 <div class="admin-list">
                     <h2>Admin List</h2>
+                    @if ($users->isEmpty())
+                        <p>No users found.</p>
+                    @else
                     <table>
                         <thead>
                             <tr>
@@ -34,30 +37,25 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone number</th>
-                                <th>password</th>
+                               
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($users as $user)
                             <tr>
-                                <td>1</td>
-                                <td>John Doe</td>
-                                <td>johndoe@example.com</td>
-                                <td>0917741342</td>
-                                <td>1234</td>
-                                <td><button class="delete-btn">Delete</button> <button class="update-btn">Update</button></td>
+                              
+                                <td>{{$user->id}}</td>
+                                <td>{{$user->name}}</td>
+                                <td>{{$user->email}}</td>
+                                <td>{{$user->phone_number}}</td>
                                 
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Jane Smith</td>
-                                <td>janesmith@example.com</td>
-                                <td>0917741342</td>
-                                <td>1234</td>
                                 <td><button class="delete-btn">Delete</button> <button class="update-btn">Update</button></td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
+                    @endif
                 </div>
             </section>
         </div>

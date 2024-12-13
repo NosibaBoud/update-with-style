@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +24,14 @@
             <header>
                 <h1>Add New Admin</h1>
             </header>
+            <h1>Create a New User</h1>
+            @if (session('success'))
+                <p style="color: green;">{{ session('success') }}</p>
+            @endif
+        
             <section class="content">
+                    <form method="POST" action="/store/admin">
+                      @csrf
                 <!-- Add Admin Section -->
                 <div class="add-admin">
                     <h2>Ensert admin inforamtion:</h2>
@@ -40,12 +48,30 @@
                             <label for="name">Phone Number:</label>
                             <input type="text" id="phone_number" name="phone_number" placeholder="Enter admin phone number" required>
                         </div>
-                        <div class="form-group">
+                        <div class="password-container">
                             <label for="name">Password:</label>
-                            <input type="text" id="password" name="password" placeholder="Enter admin password" required>
+                            <input type="password" id="password" name="password" placeholder="Enter admin password" required>
+                            <span class="toggle-eye" onclick="togglePassword()">👁</span>
                         </div>
+                        <script>
+                            function togglePassword() {
+                                const passwordField = document.getElementById("password");
+                                const toggleIcon = document.querySelector(".toggle-eye");
+                                
+                                if (passwordField.type === "password") {
+                                    passwordField.type = "text";
+                                    toggleIcon.textContent = "👁‍🗨"; // Switch to "eye closed" icon
+                                } else {
+                                    passwordField.type = "password";
+                                    toggleIcon.textContent = "👁"; // Switch back to "eye open" icon
+                                }
+                            }
+                        </script>
+                        <br>
                         <button type="submit">Add Admin</button>
                     </form>
                 </div>
+            </form>
             </body>
             </html>
+            

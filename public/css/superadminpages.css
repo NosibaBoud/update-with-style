@@ -100,11 +100,12 @@ header h1 {
 }
 
 .add-admin input {
-    width: 100%;
+    width: 50%;
     padding: 10px;
     font-size: 1rem;
     border: 1px solid #ddd;
     border-radius: 5px;
+    
 }
 
 .add-admin button {
@@ -167,4 +168,27 @@ header h1 {
 }
 .admin-list .update-btn:hover{
     background-color:rgb(69, 130, 187) ;
+}
+.password-container {
+    width: 30%;
+    position: relative;
+    display: inline-block;
+}
+
+.password-container input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.toggle-eye {
+    position: absolute;
+    right: 10px;
+    top: 60.50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: gray;
 }
