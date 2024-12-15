@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\investigationsearchcontroller;
 use App\Http\Controllers\logoutcontroller;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\testcontroller;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Usertestscontroller;
@@ -24,6 +25,18 @@ Route::get('/results', function () {
         Route::get('/add/admin',[UserController::class,'create'])->name('admin.create');
         Route::post('/store/admin',[UserController::class,'store'])->name('admin.store');
         Route::get('/manage/admins',[UserController::class,'show'])->name('admin.show');
+        Route::post('/update/{id}/admin', [UserController::class, 'update'])->name('admin.update'); 
+        Route::get('/update', function () {
+            return view('superadmin.editadmin');
+            });
+            Route::get('/upload-pdf', [PdfController::class, 'uploadForm']);
+Route::post('/upload-pdf', [PdfController::class, 'upload']);
+//Route::get('/pdfs', [PdfController::class, 'listPdfs'])->name('pdf.listpdfs');
+Route::get('/pdfs/{id}/view', [PdfController::class, 'viewPdf']);
+Route::get('/search-pdf', function () {
+    return view('list-pdfs'); // Render the search form
+})->name('pdf.search-form');
+Route::get('/search-pdf/result', [PdfController::class, 'search'])->name('pdf.search');
 Route::get('/mytests',[Usertestscontroller::class,'show'])->name('mytests.show');
 
         Route::get('/testslist', function () {

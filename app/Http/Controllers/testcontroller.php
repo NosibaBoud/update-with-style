@@ -31,6 +31,7 @@ public function update(Request $request,$id)
     $investigation->expected_time_for_test = $request->input('expected_time_for_test');
     $investigation->status = $request->input('status');
     $investigation->can_taken = $request->input('can_taken');
+    $investigation->update();
     return redirect('/investigations');
 }
 

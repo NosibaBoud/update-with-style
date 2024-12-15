@@ -24,7 +24,22 @@ class UserController extends Controller
             $data->password = $request->input('password');
         $data->save();
         return redirect()->route('admin.show');
+    }
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone_number' => 'nullable|string|max:15',
+        ]);
 
+        $users = User::find($id);
+        $users->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+        ]);
 
+        return redirect(view('superadmin.manageadmins',compact('users')))->back()->with('success', 'User updated successfully!');
     }
 }
