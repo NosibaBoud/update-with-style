@@ -18,27 +18,19 @@ class Usertestscontroller extends Controller
   ]);
   return redirect()->back();
 }
-public function show(Request $request)
+public function show()
 {
   
   $userId = Auth::id();
          
   $test = UserInvestigation::where('user_id', $userId)->get();
- 
- // $test = mytests::all();
- // $userId = Auth::id();
 
 return view('my tests',['tests' => $test]);
+$totalPrice = collect($test)->sum('price'); // Sum up all prices
+
+    return view('my tests', compact('test', 'totalPrice'));
 }
-public function delete(Investigation $investigation){
-  $this->authorize('delete', $investigation);
 
-  $investigation->likes()->delete();
-
-  $investigation->delete();
-
-  return redirect()->back();
-}
 public function destroy($id)
     {
         // Find the item by ID and delete it

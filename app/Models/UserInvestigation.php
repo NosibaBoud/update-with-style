@@ -23,4 +23,7 @@ class UserInvestigation extends Model
     public function investigation(){
         return $this->belongsTo(Investigation::class);
     }
+    public function appointment(){
+        return $this->hasMany(HomeAppointment::class);
+    }
 }

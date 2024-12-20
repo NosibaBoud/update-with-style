@@ -29,7 +29,7 @@
         </div>
         @endforeach
     </div> 
-    {{$tests->Links()}}
+   
 </body>
 </html>
    @endsection

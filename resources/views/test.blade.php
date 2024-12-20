@@ -27,7 +27,9 @@
     @csrf
     <div class="card-body" style="text-align: right;">
     <div class="btn btn-primary">
+      
       <button  type="submit">ADD</button>
+
   </div>
 </div>
 </form>

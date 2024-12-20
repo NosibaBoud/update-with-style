@@ -9,18 +9,32 @@ class HomeAppointment extends Model
 {
     use HasFactory;
     protected $fillable=[
-            'user_id',
-            'investigation_id',
-            'user_investigation_id',
+           // 'user_id',
+           //'investigation_id',
+            //'user_investigation_id',
             'first_name',
             'last_name',
             'email',
             'address',
             'phone_number',
             'gender',
-            'age',
+           // 'date_of_birth',
             'time',
-    'date',
+            'date',
 
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function userInvestigation()
+    {
+        return $this->belongsTo(UserInvestigation::class);
+    }
+
+    public function investigation()
+    {
+        return $this->belongsTo(Investigation::class);
+    }
 }

@@ -17,9 +17,9 @@ class PdfController extends Controller
 
         // Return the search view with the result
         if ($pdf) {
-            return view('list-pdfs', compact('pdf'));
+            return view('viewresult', compact('pdf'));
         } else {
-            return view('list-pdfs', ['noResult' => true]);
+            return view('viewresult', ['noResult' => true]);
         }
     }
     

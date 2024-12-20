@@ -10,7 +10,7 @@ class testcontroller extends Controller
 
     public function index(){
         $tests=Investigation::all();
-           $tests = Investigation::orderBy('created_at', 'asc')->simplepaginate(3);
+           $tests = Investigation::orderBy('created_at', 'asc')->simplepaginate(6);
            return view('admindashboard.investigations',compact('tests'));
     }
     public function create()

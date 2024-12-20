@@ -17,26 +17,25 @@
         @foreach($tests as $test)
         <div class="card">
           <div class="card-content">
-        <ul>{{$test->investigation->name }}</ul>
+        <ul>{{$test->name }}</ul>
         <form action="{{ route('investigation.destroy', $test->id) }}" method="POST">
           @csrf
           @method('DELETE')
-          <button class="remove-button">Remove</button>
-        
+          <button class="remove-button">Remove</button>   
       </form>
       </div>
   </div>
         @endforeach
         @if($tests->count() > 0)
         <form  method="POST" action="{{url('/makeappointment')}}">
-          @csrf
-        
+          @csrf 
           <div class="card-body" style="text-align: right;">
           <div class="btn btn-primary">
             <button  type="submit">make home appointment</button>
         </div>
       </div>
       </form>
+      
         @else
     <p>No tests selected yet.</p>
         @endif

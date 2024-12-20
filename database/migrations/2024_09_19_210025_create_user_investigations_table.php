@@ -15,12 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('investigation_id');
-            $table->enum('status',[
-                'confirmed',
-                'pending',
-            'cancelled'
-            ])->default('pending');
-            $table->foreignId('lab_technician_id')->nullable();
             $table->timestamps();
         });
     }
