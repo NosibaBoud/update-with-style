@@ -32,7 +32,7 @@ public function update(Request $request,$id)
     $investigation->status = $request->input('status');
     $investigation->can_taken = $request->input('can_taken');
     $investigation->update();
-    return redirect('/investigations');
+    return redirect()->route('investigations.index')->with('success', 'Item updated successfully!');
 }
 
     public function search()
@@ -42,18 +42,19 @@ public function update(Request $request,$id)
         return view('search',compact('tests'));
 
     }
+    public function searchfor()
+    {
+        $search_text=$_GET['search'];
+        $tests=Investigation::where('name','like','%'.$search_text.'%')->get();
+        return view('admindashboard.search',compact('tests'));
+
+    }
     public function show($id)
     {
         $test = Investigation::find($id);
         return view('admindashboard.investigation', compact('test'));;
     }
-    //public function investigationsearch()
-    //{
-       // $search_text=$_GET['query'];
-       // $investigations=Investigation::where('name','like','%'.$search_text.'%')->get();
-       // return view('admindashboard.investigationsearch',compact('investigations'));
-
-    //}
+    
     public function store(Request $request){
         $this->validate($request, [
             'name' => ['required', 'string', 'min:3', 'max:1000'],
@@ -76,7 +77,14 @@ public function update(Request $request,$id)
         return redirect()->route('investigations.show', ['id' => $investigation->id]);
 
     }
-   
+    public function delete($id){
+        $test = Investigation::find($id);
+        if ($test) {
+            $test->delete();
+            return redirect()->back()->with('success', 'PDF uploaded successfully!');
+        }
+    }
+    
 
 }
 

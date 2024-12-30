@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link href="/css/superadminpages.css" rel="stylesheet">
+  
 </head>
 <body>
     <div class="dashboard">
@@ -53,6 +54,7 @@
                             <input type="password" id="password" name="password" placeholder="Enter admin password" required>
                             <span class="toggle-eye" onclick="togglePassword()">👁</span>
                         </div>
+                        
                         <script>
                             function togglePassword() {
                                 const passwordField = document.getElementById("password");
@@ -67,8 +69,17 @@
                                 }
                             }
                         </script>
-                        <br>
-                        <button type="submit">Add Admin</button>
+                     
+                        <label>choose Admin Role:</label>
+                      <div class="form-check">
+                      <input class="form-check-input" value="admin" type="radio" name="role" id="role" checked>
+                      <label class="form-check-label" for="role">
+                    Admin
+                      </label>
+                      </div>
+                      <button type="submit">Add Admin</button>
+                      </div>
+                      
                     </form>
                 </div>
             </form>

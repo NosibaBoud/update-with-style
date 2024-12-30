@@ -7,15 +7,13 @@
 @extends('admindashboard.indexadmin')
 @section('content')
 <head>
- 
-      <link href="/css/adminpages.css" rel="stylesheet">
-    
-    
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <!--styles-->
     <link href="/css/adminpages.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+  
   </head>
     <div class="mx-auto max-w-8xl px-4 py-6 sm:px-6 lg:px-8 ">
-      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Investigations</h1>
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Matching Investigations</h1>
     </div>    
 </br>
 <div class="search-bar">
@@ -24,15 +22,6 @@
     <button type="submit">Search</button>
   </form>
 </div>
-<form  method="POST" action="{{url('/investigation/create')}}">
-  @csrf
-    <button class="button add">create new investigation</button>
-</form>
-@if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
   <main>
     <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
     <div class="container">
@@ -64,43 +53,16 @@
                     <div class="button-container">
                     <a href="/investigation/{{$test->id}}/edit">
                         <button  class="button edit">edit</button>
-</a>
-
-<!-- Confirmation Modal -->
-<div id="confirmationModal" class="modal">
-<div class="modal-content">
-<div class="modal-header">
-Confirm Deletion
-</div>
-<div class="modal-body">
-Are you sure you want to delete this item? This action cannot be undone.
-</div>
-<div class="modal-footer">
-<button class="btn btn-secondary" onclick="hideModal()">Cancel</button>
-                      <form action="{{ route('investigation.delete', $test) }}" method="POST" id="deleteForm">
+                      </a>
+                      <form action="{{ route('investigation.delete', $test) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <button  class="button delete" >Delete</button>
-                    </form>
-                  </div>
-                </div>
-            </div>
-            <script>
-            // Show the modal
-            function showModal() {
-                document.getElementById('confirmationModal').classList.add('active');
-            }
-          
-            // Hide the modal
-            function hideModal() {
-                document.getElementById('confirmationModal').classList.remove('active');
-            }
-          </script>
+                    <button class="button delete">Delete</button>
+                  </form>
                     <a href="/investigation/{{$test->id}}">
                         <button class="button view">view</button>
                       </a>
+                    </div>
                 </div>
                 </td>
               </tr>
@@ -111,7 +73,7 @@ Are you sure you want to delete this item? This action cannot be undone.
       <br>
      <div>
         <br>
-      {{$tests->Links()}}
+     
       </div>
   
       </div>

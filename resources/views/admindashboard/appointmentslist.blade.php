@@ -1,13 +1,16 @@
-<head>
-    <title>Upload Result</title>  
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
- <!--styles-->
- <link href="/css/main.css" rel="stylesheet">
-</head>
+<!------ Include the above in your HEAD tag ---------->
+<head>
+        <title>Appointment List</title>
+<link href="/css/appointmentstyle.css" rel="stylesheet">
+        <link href="/css/main.css" rel="stylesheet">
+    </head>
+  </head>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <body class="home">
+  
     <div class="container-fluid display-table">
         <div class="row display-table-row">
             <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
@@ -18,13 +21,22 @@
                 </div>
                 <div class="navi">
                     <ul>
-                        
                         <li><a href="/investigations"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">investigations</span></a></li>
-                        <li  class="active"><a href="/upload-pdf"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Updload Result</span></a></li>
-                       
-                        <li><a href="/appointments"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">appointments</span></a></li>
-                        <li><a href="#"><i class="fa fa-log out" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Logout</span></a></li>
+                        <li><a href="/upload-pdf"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Updload Result</span></a></li>
+                        <li  class="active"><a href="/appointments"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">appointments</span></a></li>
+                        <li>
+                            <a href="#" id="logout-link">
+                              <i class="fa fa-sign-out" aria-hidden="true"></i>
+                              <span class="hidden-xs hidden-sm">Logout</span>
+                            </a>
+                            @auth
+                            <form id="logout-form" method="POST" action="/logout" style="display: none;">
+                              @csrf
+                            </form>
+                            @endauth
+                          </li>
                     </ul>
+                   
                 </div>
             </div>
             <div class="col-md-10 col-sm-11 display-table-cell v-align">
@@ -42,34 +54,24 @@
                                     </button>
                                 </div>
                             </nav>
-                            <br>
+   
 <body>
-    <div class="container mt-5">
-        <h1>Upload Result</h1>
-
-        @if (session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
-        @endif
-
-        <form action="/upload-pdf" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="mb-3">
-                <label for="receipt_number" class="form-label">Receipt number</label>
-                <input type="text" class="form-control" id="receipt_number" name="receipt_number" required>
+    <div class="container">
+        <h1>Appointments</h1>
+        @foreach ($users as $user)
+        @foreach ($user->homeAppointments as $appointment)
+       <a href="/appointment">
+        <div class="appointment">
+            <div class="appointment-id">Appointment ID: {{ $appointment->id }}</div>
+            <div class="appointment-details">
+                <div class="appointment-date">Date: {{ $appointment->date }}</div>
+                <div class="appointment-time">Time:{{ $appointment->time}}</div>
             </div>
-            <div class="mb-3">
-                <label for="file_path" class="form-label">PDF File</label>
-                <input type="file" class="form-control" id="file_path" name="file_path" accept="application/pdf" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Upload</button>
-        </form>
+        </div>
+       
     </div>
-</div>
-</header>
-</div>
-</div>
-</div>
-
-</div>
-
+</a>
+@endforeach
+@endforeach
 </body>
+

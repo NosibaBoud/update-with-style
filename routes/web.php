@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -13,6 +12,7 @@ use App\Models\Investigation;
 use App\Models\UserInvestigation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
     return view('home');
@@ -20,12 +20,17 @@ Route::get('/', function () {
 Route::get('/results', function () {
     return view('results');
     });
+    Route::get('/log', function () {
+        return view('log');
+});
+      
+  
     Route::get('/makeappointment', [AppointmentController::class,'create'])->name('appointment.create');
-
 Route::post('/store/appointment', [AppointmentController::class, 'store']);
         Route::get('/add/admin',[UserController::class,'create'])->name('admin.create');
         Route::post('/store/admin',[UserController::class,'store'])->name('admin.store');
         Route::get('/manage/admins',[UserController::class,'show'])->name('admin.show');
+        Route::delete('/delete/{id}/admin',[UserController::class,'delete'])->name('admin.delete');
         Route::post('/update/{id}/admin', [UserController::class, 'update'])->name('admin.update'); 
         Route::get('/update', function () {
             return view('superadmin.editadmin');
@@ -51,18 +56,15 @@ Route::get('/test/{id}', function ($id) {
     $test = Investigation::find($id);
         return view('test',['test'=>$test]);
 }); 
-//Route::delete('/investigation/{investigation}/delete', [Usertestscontroller::class, 'delete']);
+Route::get('/appointments', [AppointmentController::class, 'index']);
+Route::get('/appointment',  [AppointmentController::class, 'viewappo']);
 Route::post('/logout',[logoutcontroller::class,'destroy']);
 Route::get('/search',[ testcontroller::class,'search']);
+Route::get('/investigation/search',[ testcontroller::class,'searchfor']);
 Route::group(['middleware' => ['auth']], function ()
  {
     Route::post('/add_test/{id}',[Usertestscontroller::class,'addMytest']);
-
 });
-
-        Route::get('/admindashboard', function () {
-            return view('admindashboard.admindashboard');
-            });
             Route::get('/investigations',[testcontroller::class,'index'])->name('investigations.index');
             
                Route::get('/investigation/{id}', function ($id) {
@@ -74,10 +76,9 @@ Route::group(['middleware' => ['auth']], function ()
                 Route::post('/investigations/store',[testcontroller::class,'store']);
                 Route::get('/investigations/{id}', [testcontroller::class, 'show'])->name('investigations.show');
                 Route::get('/investigation/{id}/edit', [testcontroller::class, 'edit'])->name('investigations.edit');
-                Route::get('/investigations/{id}/update', [testcontroller::class, 'update'])->name('investigations.update');
-
-                Route::delete('/investigation/{id}', [Usertestscontroller::class, 'destroy'])->name('investigation.destroy');
-               
+                Route::put('/investigations/{id}/update', [testcontroller::class, 'update'])->name('investigations.update');
+                Route::delete('/investigation/{id}/delete', [testcontroller::class, 'delete'])->name('investigation.delete');
+                Route::delete('/investigationn/{id}/remove', [Usertestscontroller::class, 'destroy'])->name('investigation.destroy');
                 Auth::routes();
  
 //->middleware(['Auth','verified']);

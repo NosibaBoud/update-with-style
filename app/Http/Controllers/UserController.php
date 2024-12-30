@@ -22,6 +22,7 @@ class UserController extends Controller
             $data->email = $request->input('email');
             $data->phone_number = $request->input('phone_number');
             $data->password = $request->input('password');
+            $data->role=$request->input('role');
         $data->save();
         return redirect()->route('admin.show');
     }
@@ -41,5 +42,12 @@ class UserController extends Controller
         ]);
 
         return redirect(view('superadmin.manageadmins',compact('users')))->back()->with('success', 'User updated successfully!');
+    }
+    public function delete($id){
+        $user = User::find($id);
+        if ($user) {
+            $user->delete();
+            return redirect()->back()->with('success', 'admin deleted successfully!');
+        }
     }
 }

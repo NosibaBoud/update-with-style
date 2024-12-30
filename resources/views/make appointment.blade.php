@@ -19,7 +19,7 @@
     @endif
 
     <main class="form-container">
-        <form class="appointment-form" action="/store/appointment" method="post">
+        <form class="appointment-form" action="/store/appointment/" method="post">
                 @csrf
             <div class="form-group">
                 <label for="first_name">First Name</label>

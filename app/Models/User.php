@@ -22,6 +22,7 @@ class User extends Authenticatable
         'phone_number',
         'email',
         'password',
+       // 'rolr',
         
     ];
     public function tests() {
@@ -30,6 +31,10 @@ class User extends Authenticatable
     public function mytests()
 {
     return $this->hasMany(UserInvestigation::class);
+}
+public function homeAppointments()
+{
+    return $this->hasMany(HomeAppointment::class);
 }
 
     /**

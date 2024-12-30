@@ -16,8 +16,8 @@
                 <li><a href="{{url('/manage/admins')}}">Manage Admins</a></li>
                 <li><a href="#">Logout</a></li>
             </ul>
-        </nav>
-
+        </nav>  
+        
         <!-- Main Content -->
         <div class="main-content">
             <header>
@@ -27,8 +27,9 @@
                 <!-- Admin List Section -->
                 <div class="admin-list">
                     <h2>Admin List</h2>
+                    <br>
                     @if ($users->isEmpty())
-                        <p>No users found.</p>
+                        <p>No admins found.</p>
                     @else
                     <table>
                         <thead>
@@ -37,7 +38,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone number</th>
-                               
+                                <th>Role</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -49,10 +50,20 @@
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->phone_number}}</td>
+                                <td>{{$user->role}}</td>
                                 
-                                <td><button class="delete-btn">Delete</button> 
+                                <td>
+                                    <div class="button-container">
+                                    <form action="{{ route('admin.delete',$user) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                    <button class="delete-btn">Delete</button> 
+                                    </form>
                                     <a href="{{url('/update')}}">
-                                    <button class="update-btn">Update</button></td></a>
+                                    <button class="update-btn">Update</button>
+                                </a>
+                            </div>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

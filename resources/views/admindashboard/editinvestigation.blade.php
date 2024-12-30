@@ -29,7 +29,7 @@
                           <li><a href="/investigations"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">investigations</span></a></li>
                           <li><a href="/upload-pdf"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Upload Result</span></a></li>
                           <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Calender</span></a></li>
-                          <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">appointments</span></a></li>
+                          <li><a href="/appointments"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">appointments</span></a></li>
                           <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Setting</span></a></li>
                       </ul>
                   </div>
@@ -53,7 +53,8 @@
   <br>
   <body>
   <div class="container">
-    <form action="{{url('/investigations/$investigation->id/update')}}" method="PUT">
+    <form action="{{ route('investigations.update', $investigation->id) }}" method="POST">
+      @csrf
       @method('PUT')
   <form>
     <div class="row">

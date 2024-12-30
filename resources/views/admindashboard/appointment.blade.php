@@ -1,11 +1,12 @@
-
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 <head>
     <!--styles-->
-    <link href="/css/main.css" rel="stylesheet">
+    <head><link href="/css/appointmentstyle.css" rel="stylesheet">
+        <link href="/css/main.css" rel="stylesheet">
+    </head>
   </head>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <body class="home">
@@ -20,9 +21,9 @@
                 </div>
                 <div class="navi">
                     <ul>
-                        <li class="active"><a href="/investigations"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">investigations</span></a></li>
+                        <li><a href="/investigations"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">investigations</span></a></li>
                         <li><a href="/upload-pdf"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Updload Result</span></a></li>
-                        <li><a href="/appointments"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">appointments</span></a></li>
+                        <li  class="active"><a href="/appointments"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">appointments</span></a></li>
                         <li><a href="#"><i class="fa fa-log out" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Logout</span></a></li>
                       
                         @Auth
@@ -50,14 +51,67 @@
                                     </button>
                                 </div>
                             </nav>
-                            @yield('content')
-                            
-                        </div>
-                    </header>
-                </div>
-            </div>
+<h1>Appointment Details</h1>
+<body>
+<div class="containerr">
+    @foreach ($users as $user)
+    @foreach ($user->homeAppointments as $appointment)
+    <div class="appointment-info">
+        <div class="info-row">
+            <span class="label">Appointment ID:</span>
+            <span class="value">{{ $appointment->id }}</span>
         </div>
-        
+        <div class="info-row">
+            <span class="label">First Name:</span>
+            <span class="value">{{ $appointment->first_name }}</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Last Name:</span>
+            <span class="value">{{ $appointment->last_name }}</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Gender:</span>
+            <span class="value">{{ $appointment->gender }}</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Phonen Number:</span>
+            <span class="value">{{ $appointment->phone_number }}</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Email:</span>
+            <span class="value">{{ $appointment->email }}</span>
+        </div>
+       
+        <div class="info-row">
+            <span class="label">Date:</span>
+            <span class="value">{{ $appointment->date }}</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Time:</span>
+            <span class="value">{{ $appointment->time }}</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Address:</span>
+            <span class="value">{{ $appointment->address }}</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Investigation(s):</span>
+            @foreach ($user->mytests as $mytests)
+            <br>
+            <span class="value">{{ $mytests->investigation->name }}</span>
+            @endforeach
+        </div>
     </div>
- 
+    <a href="/appointments" class="back-btn">Back to Appointments</a>
+</div>
+@endforeach
+    @endforeach
+</div>
+</header>
+</div>
+</div>
+</div>
+
+</div>
 </body>
+
