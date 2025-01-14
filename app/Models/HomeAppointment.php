@@ -18,7 +18,7 @@ class HomeAppointment extends Model
             'address',
             'phone_number',
             'gender',
-           // 'date_of_birth',
+            'date_of_birth',
             'time',
             'date',
 

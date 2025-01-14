@@ -16,10 +16,17 @@ class AppointmentController extends Controller
         $users = User::with('homeAppointments', 'mytests.investigation')->get();
         return view('admindashboard.appointmentslist', compact('users'));
     }
-    public function viewappo()
+    public function viewappo($id)
     {
-        $users = User::with('homeAppointments', 'mytests.investigation')->get();
-        return view('admindashboard.appointment', compact('users'));
+        // Find the appointment by its ID
+        $appointment = HomeAppointment::find($id);
+    
+        if (!$appointment) {
+            // Handle the case where the appointment is not found
+            return redirect()->route('appointments.index')->withErrors('Appointment not found.');
+        }
+    
+        return view('admindashboard.appointment', compact('appointment'));
     }
     public function create(){
         return view('make appointment');
@@ -41,6 +48,7 @@ class AppointmentController extends Controller
     $info->email = $request->input('email');
     $info->phone_number = $request->input('phone_number');
     $info->gender = $request->input('gender');
+    $info->date_of_birth ="{$request->year}-{$request->month}-{$request->day}";
     $info->address = $request->input('address');
     $info->date = $request->input('date');
     $info->time = $request->input('time');

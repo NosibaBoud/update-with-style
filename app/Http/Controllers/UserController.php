@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function show()
@@ -17,32 +17,37 @@ class UserController extends Controller
         return view('superadmin.addadmin');
     }
     public function store(Request $request){
-       $data=new User ;
-            $data->name = $request->input('name');
-            $data->email = $request->input('email');
-            $data->phone_number = $request->input('phone_number');
-            $data->password = $request->input('password');
-            $data->role=$request->input('role');
-        $data->save();
+       $users=new User ;
+            $users->name = $request->input('name');
+            $users->email = $request->input('email');
+            $users->phone_number = $request->input('phone_number');
+            $users->password = $request->input('password');
+            $users->role=$request->input('role');
+        $users->save();
         return redirect()->route('admin.show');
     }
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'phone_number' => 'nullable|string|max:15',
-        ]);
-
-        $users = User::find($id);
-        $users->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone_number' => $request->phone_number,
-        ]);
-
-        return redirect(view('superadmin.manageadmins',compact('users')))->back()->with('success', 'User updated successfully!');
-    }
+       // Show the edit form
+       public function edit($id)
+       {
+           $user = User::find($id);
+           return view('superadmin.editadmin', compact('user'));
+       }
+   
+       // Handle the update logic
+       public function update(Request $request, $id)
+       {
+         
+   // Update user information
+           $user = User::find($id);
+           $user->name = $request->name;
+           $user->email = $request->email;
+           $user->phone_number = $request->phone_number;
+           $user->password = $request->password;
+   
+           $user->save();
+   
+           return redirect()->route('admin.show', $id)->with('success', 'User information updated successfully.');
+       }
     public function delete($id){
         $user = User::find($id);
         if ($user) {
@@ -50,4 +55,7 @@ class UserController extends Controller
             return redirect()->back()->with('success', 'admin deleted successfully!');
         }
     }
+    public function logout(){
+    Auth::logout(); // Log the user out
+    return redirect('/login');}
 }

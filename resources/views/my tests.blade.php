@@ -21,7 +21,7 @@
         <form action="{{ route('investigation.destroy', $test->id) }}" method="POST">
           @csrf
           @method('DELETE')
-          <button class="remove-button">Remove</button>   
+          <button class="remove-button" onclick="return confirm('Are you sure you want to remove this investigation?')">Remove</button>   
       </form>
       </div>
   </div>

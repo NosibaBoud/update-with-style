@@ -10,6 +10,7 @@
       <div class="content">
         <img src="{{URL('/images/image2.jpg')}}" alt="">
   </div>
+  
 </header>
 <div class="centered-text">
   <h1>Welcome to Our Website</h1>

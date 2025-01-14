@@ -5,18 +5,13 @@ body, html {
     font-family: Arial, sans-serif;
     background-color: #f8f9fa; /* Light grey background */
     color: #333; /* Dark text */
+    
   }
-  body, html {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4; /* Light grey background */
-    color: #333; /* Dark text */
-  }
+  
 header img{
-    height: 50vh;
    background-size: cover;
-   height: 70vh;  
+   width: 100%; /* Set the width to 100% of the screen */
+   height: auto; 
 }
 header .content{
     display:flex;

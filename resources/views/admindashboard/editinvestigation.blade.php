@@ -25,10 +25,9 @@
                   </div>
                   <div class="navi">
                       <ul>
-                          <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
-                          <li><a href="/investigations"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">investigations</span></a></li>
+                         
+                          <li class="active"><a href="/investigations"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">investigations</span></a></li>
                           <li><a href="/upload-pdf"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Upload Result</span></a></li>
-                          <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Calender</span></a></li>
                           <li><a href="/appointments"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">appointments</span></a></li>
                           <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Setting</span></a></li>
                       </ul>
@@ -50,69 +49,121 @@
                                   </div>
                               </nav>
                               <h1>Edit Current Investigation</h1>
+                              <!-- Form for editing investigation -->
+                
+                    <!-- Display Error Message -->
+                    @if(session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                            
   <br>
   <body>
+ 
   <div class="container">
     <form action="{{ route('investigations.update', $investigation->id) }}" method="POST">
       @csrf
       @method('PUT')
-  <form>
-    <div class="row">
-      <div class="form-group">
-          <label>Investigation Name</label>
-          <input type="text" class="form-control is-invalid" value="{{$investigation->name}}" id="name" name="name" placeholder="insert name" required>
-        </div>
-        <div class="form-group">
-          <label>investigation instructions</label>
-          <input type="text" class="form-control is-invalid" value="{{$investigation->instructions}}" id="instructions" name="instructions" placeholder="insertinstructions" required>
-      </div>
-      <div class="form-group">
-        <label>Price</label>
-          <input type="text" class="form-control is-invalid" value="{{$investigation->price}}" id="price" name="price" placeholder="insert price" required>
-        </div>
-    </div>
-    <div class="row">
-      <div class="form-group">
-        <label>Investigation Details</label>
-        <textarea type="text" class="form-control is-invalid" value="{{$investigation->details}}" name="details" id="details"  placeholder="insert details"  required></textarea>
-      </div>
-      <div class="form-group">
-        <label>expected time for investigation</label>
-        <input type="text" class="form-control is-invalid" value="{{$investigation->expected_time_for_test}}" id="expected_time_for_test" name="expected_time_for_test" placeholder="insert expected time" required>
-      </div>
-      <div class="form-group">
-        <label>status</label>
-        <input type="text" class="form-control is-invalid" value="{{$investigation->status}}" id="status" name="status" placeholder="insert status" required>
-      </div>
-  </div>
-  <div class="form-group">
-    <label>choose if can teken form home:</label>
-  <div class="form-check">
-  <input class="form-check-input" value="1" type="radio" name="can_taken" id="can_taken1">
-  <label class="form-check-label" for="can_taken1">
-    Yes
-  </label>
-  </div>
-  <div class="form-check">
-  <input class="form-check-input" value="0" type="radio" name="can_taken" id="can_taken2" checked>
-  <label class="form-check-label" for="can_taken2">
-    No
-  </label>
-  </div>
-  </div>
-  <button type="submit" class="save-btn">Save </button>
-  </form>
-</form>
-  </div>
-  </body>            
-   </div>
-   </header>
-   </div>
-   </div>
-   </div>    
-    </div>
    
-  </body>
-  
-  
-  
+      <div class="row">
+     
+
+        <div class="form-group">
+          <label>Investigation Name</label>
+          <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $investigation->name) }}" id="name" name="name" placeholder="Insert name" required>
+          @error('name')
+              <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
+      </div>
+      <div class="form-group">
+          <label>Investigation Instructions</label>
+          <input type="text" class="form-control @error('instructions') is-invalid @enderror" value="{{ old('instructions', $investigation->instructions) }}" id="instructions" name="instructions" placeholder="Insert instructions" required>
+                                @error('instructions')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+      </div>
+      <div class="form-group">
+          <label>Price</label>
+          <input type="text" class="form-control @error('price') is-invalid @enderror" value="{{ old('price', $investigation->price) }}" id="price" name="price" placeholder="Insert price" required>
+          @error('price')
+              <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
+      </div>
+  </div>
+  <div class="row">
+      <div class="form-group">
+          <label>Investigation Details</label>
+          <textarea class="form-control @error('details') is-invalid @enderror" name="details" id="details" placeholder="Insert details" required>{{ old('details', $investigation->details) }}</textarea>
+          @error('details')
+              <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
+      </div>
+      <div class="form-group">
+          <label>Expected Time for Investigation</label>
+          <input type="text" class="form-control @error('expected_time_for_test') is-invalid @enderror" value="{{ old('expected_time_for_test', $investigation->expected_time_for_test) }}" id="expected_time_for_test" name="expected_time_for_test" placeholder="Insert expected time" required>
+          @error('expected_time_for_test')
+              <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
+      </div>
+      <div class="form-group">
+          <label>Status</label>
+          <input type="text" class="form-control @error('status') is-invalid @enderror" value="{{ old('status', $investigation->status) }}" id="status" name="status" placeholder="Insert status" required>
+          @error('status')
+              <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
+      </div>
+  </div>
+    <div class="form-group">
+    <label>Can Taken From Home?</label>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="can_taken" id="can_taken1" value="1" {{ old('can_taken', $investigation->can_taken) == 1 ? 'checked' : '' }}>
+        <label class="form-check-label" for="can_taken1">
+            Yes
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="can_taken" id="can_taken2" value="0" {{ old('can_taken', $investigation->can_taken) == 0 ? 'checked' : '' }}>
+        <label class="form-check-label" for="can_taken2">
+            No
+        </label>
+    </div>
+</div>
+  <button type="submit" class="save-btn">Save</button>
+</form>
+</div>
+</body>
+</div>
+</header>
+</div>
+</div>
+</div>    
+</div>
+<!-- Modal for error -->
+@if(session('error'))
+<script>
+  $(document).ready(function() {
+      $('#errorModal').modal('show');
+  });
+</script>
+@endif
+<!-- Modal -->
+<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="errorModalLabel">Error</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <div class="modal-body">
+          {{ session('error') }}
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+  </div>
+</div>
+</div>
+</body>

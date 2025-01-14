@@ -10,11 +10,12 @@
 </head>
 <body>
     <div class="dashboard">
+        
         <!-- Sidebar Navigation -->
         <nav class="sidebar">
             <h2> Add New Admin</h2>
             <ul>
-                <li><a href="{{url('/add/admin')}}">Add New Admin</a></li>
+                <li class="active"><a href="{{url('/add/admin')}}">Add New Admin</a></li>
                 <li><a href="{{url('/manage/admins')}}">Manage Admins</a></li>
                 <li><a href="#">Logout</a></li>
             </ul>

@@ -39,9 +39,6 @@ public function show()
          
   $tests = UserInvestigation::where('user_id', $userId)->with('investigation')->get();
   return view('my tests',['tests' => $tests]);
-  $totalPrice = collect($test)->sum('price'); // Sum up all prices
-  
-      return view('my tests', compact('test', 'totalPrice'));
   }
 
 

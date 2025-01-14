@@ -44,6 +44,50 @@
                 </select>
             </div>
             <div class="form-group">
+                <label for="phone_number">Date of Birth</label>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <!-- Day Selection -->
+                <select name="day" required id="day">
+                    <option value="" disabled selected>Day</option>
+                    <!-- Generate days dynamically -->
+                    <script>
+                        for (let i = 1; i <= 31; i++) {
+                            document.write(`<option value="${i}">${i}</option>`);
+                        }
+                    </script>
+                </select>
+            
+                <!-- Month Selection -->
+                <select name="month" required id="month">
+                    <option value="" disabled selected>Month</option>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+            
+                <!-- Year Selection -->
+                <select name="year" required id="year">
+                    <option value="" disabled selected>Year</option>
+                    <!-- Generate years dynamically -->
+                    <script>
+                        const currentYear = new Date().getFullYear();
+                        for (let i = currentYear; i >= 1900; i--) {
+                            document.write(`<option value="${i}">${i}</option>`);
+                        }
+                    </script>
+                </select>
+            </div>
+        </div>
+            <div class="form-group">
                 <label for="phone_number">Phone Number</label>
                 <input type="tel" id="phone_number" name="phone_number" placeholder="Enter your phone number" required>
             </div>

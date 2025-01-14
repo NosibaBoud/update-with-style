@@ -241,4 +241,21 @@ nav a.active {
   .delete:hover {
     background-color: #da5151; /* Darker green on hover */
   }
-  
+  .active {
+    background-color: #f0f0f023; /* Light background */
+    font-weight: bold;
+}
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-size: 16px;
+    position: relative;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}

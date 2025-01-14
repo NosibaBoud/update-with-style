@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('address');
             $table->integer('phone_number');
-           //$table->string('date_of_birth');
+           $table->string('date_of_birth');
             $table->string('time');
             $table->string('date');
             $table->timestamps();

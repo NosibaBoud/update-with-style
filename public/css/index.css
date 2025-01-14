@@ -120,3 +120,6 @@ button.save-btn:hover {
 .remove-button:active {
     background-color: #b30000;
 }
+.active {
+    background-color: #074beb68; /* Light background */
+    font-weight: bold;}

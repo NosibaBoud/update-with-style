@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+
     use HasFactory, Notifiable;
 
 
@@ -22,9 +23,10 @@ class User extends Authenticatable
         'phone_number',
         'email',
         'password',
-       // 'rolr',
+       'rolr',
         
     ];
+ 
     public function tests() {
         return $this->hasMany(Investigation::class);
     }

@@ -25,15 +25,10 @@
                         <li><a href="/upload-pdf"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Updload Result</span></a></li>
                         <li  class="active"><a href="/appointments"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">appointments</span></a></li>
                         <li>
-                            <a href="#" id="logout-link">
+                            <a href="/logout" id="logout-link">
                               <i class="fa fa-sign-out" aria-hidden="true"></i>
                               <span class="hidden-xs hidden-sm">Logout</span>
                             </a>
-                            @auth
-                            <form id="logout-form" method="POST" action="/logout" style="display: none;">
-                              @csrf
-                            </form>
-                            @endauth
                           </li>
                     </ul>
                    
@@ -60,18 +55,16 @@
         <h1>Appointments</h1>
         @foreach ($users as $user)
         @foreach ($user->homeAppointments as $appointment)
-       <a href="/appointment">
-        <div class="appointment">
-            <div class="appointment-id">Appointment ID: {{ $appointment->id }}</div>
-            <div class="appointment-details">
-                <div class="appointment-date">Date: {{ $appointment->date }}</div>
-                <div class="appointment-time">Time:{{ $appointment->time}}</div>
+        <a href="{{ route('appointment.view', ['id' => $appointment->id]) }}">
+            <div class="appointment">
+                <div class="appointment-id">Appointment ID: {{ $appointment->id }}</div>
+                <div class="appointment-details">
+                    <div class="appointment-date">Date: {{ $appointment->date }}</div>
+                    <div class="appointment-time">Time: {{ $appointment->time }}</div>
+                </div>
             </div>
-        </div>
-       
-    </div>
-</a>
-@endforeach
+        </a>
+    @endforeach
 @endforeach
 </body>
 

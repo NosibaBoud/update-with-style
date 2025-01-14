@@ -2,6 +2,7 @@
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\AuthloginController;
 use App\Http\Controllers\investigationsearchcontroller;
 use App\Http\Controllers\logoutcontroller;
 use App\Http\Controllers\PdfController;
@@ -17,13 +18,20 @@ use App\Http\Controllers\HomeController;
 Route::get('/', function () {
     return view('home');
 });
+Route::get('/loginn', function () {
+    return view('loginnview');
+});
 Route::get('/results', function () {
     return view('results');
     });
-    Route::get('/log', function () {
-        return view('log');
-});
-      
+   /// Route::get('/log', function () {
+     //   return view('log');
+//});
+
+route::get('/admin/login',[AuthloginController::class,'view']);
+route::post('/admin/login',[AuthloginController::class,'login']);
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+
   
     Route::get('/makeappointment', [AppointmentController::class,'create'])->name('appointment.create');
 Route::post('/store/appointment', [AppointmentController::class, 'store']);
@@ -32,9 +40,9 @@ Route::post('/store/appointment', [AppointmentController::class, 'store']);
         Route::get('/manage/admins',[UserController::class,'show'])->name('admin.show');
         Route::delete('/delete/{id}/admin',[UserController::class,'delete'])->name('admin.delete');
         Route::post('/update/{id}/admin', [UserController::class, 'update'])->name('admin.update'); 
-        Route::get('/update', function () {
-            return view('superadmin.editadmin');
-            });
+        Route::get('/edit/{id}',[UserController::class,'edit'])->name('admin.edit');
+    
+
             Route::get('/upload-pdf', [PdfController::class, 'uploadForm']);
 Route::post('/upload-pdf', [PdfController::class, 'upload']);
 //Route::get('/pdfs', [PdfController::class, 'listPdfs'])->name('pdf.listpdfs');
@@ -56,16 +64,16 @@ Route::get('/test/{id}', function ($id) {
     $test = Investigation::find($id);
         return view('test',['test'=>$test]);
 }); 
-Route::get('/appointments', [AppointmentController::class, 'index']);
-Route::get('/appointment',  [AppointmentController::class, 'viewappo']);
-Route::post('/logout',[logoutcontroller::class,'destroy']);
+Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointment.index');
+Route::get('/appointment/{id}',  [AppointmentController::class, 'viewappo'])->name('appointment.view');;
+
 Route::get('/search',[ testcontroller::class,'search']);
 Route::get('/investigation/search',[ testcontroller::class,'searchfor']);
 Route::group(['middleware' => ['auth']], function ()
  {
     Route::post('/add_test/{id}',[Usertestscontroller::class,'addMytest']);
 });
-            Route::get('/investigations',[testcontroller::class,'index'])->name('investigations.index');
+            Route::get('/investigations',[testcontroller::class,'index'])->name('investigations.index');//->middleware('auth');
             
                Route::get('/investigation/{id}', function ($id) {
                  $test = Investigation::find($id);
@@ -86,6 +94,6 @@ Route::group(['middleware' => ['auth']], function ()
 //route::get('/register',[RegisterController::class,'create']);
 //route::post('/register',[RegisterController::class,'store']);//post=requst
 //route::get('/login',[LoginController::class,'create']);
-//route::post('/login',[RegisterController::class,'store']);
+
 
 

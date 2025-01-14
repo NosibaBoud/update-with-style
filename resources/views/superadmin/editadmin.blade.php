@@ -1,93 +1,79 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User List</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Admin Dashboard</title>
+    <link href="/css/superadminpages.css" rel="stylesheet">
+  
 </head>
 <body>
-    <div class="container mt-5">
-        <h1>User List</h1>
+    <div class="dashboard">
+        
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <h2> Add New Admin</h2>
+            <ul>
+                <li><a href="{{url('/add/admin')}}">Add New Admin</a></li>
+                <li><a href="{{url('/manage/admins')}}">Manage Admins</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </nav>
 
-        @if (session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
-        @endif
-
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($users as $user)
-                    <tr>
-                        <td>{{ $user->id }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->phone }}</td>
-                        <td>
-                            <button class="btn btn-primary btn-sm" onclick="showUpdateModal({{ $user->id }}, '{{ $user->name }}', '{{ $user->email }}', '{{ $user->phone_number }}')">Update</button>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Update Modal -->
-    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <form id="updateForm" method="POST">
-                    @csrf
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="updateModalLabel">Update User</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
+        <!-- Main Content -->
+        <div class="main-content">
+            <header>
+                <h1>Add New Admin</h1>
+            </header>
+            <h1>Create a New User</h1>
+         
+    
+            <section class="content">
+                    <form method="POST" action="{{ route('admin.update', $user->id) }}">
+                      @csrf
+                <!-- Add Admin Section -->
+                <div class="add-admin">
+                    <h2>Ensert admin inforamtion:</h2>
+                    <form id="add-admin-form">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" placeholder="Enter admin name" value="{{$user->name}}" required>
                         </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" placeholder="Enter admin email"value="{{$user->email}}" required>
                         </div>
-                        <div class="mb-3">
-                            <label for="phone" class="form-label">Phone</label>
-                            <input type="text" class="form-control" id="phone" name="phone">
+                        <div class="form-group">
+                            <label for="name">Phone Number:</label>
+                            <input type="text" id="phone_number" name="phone_number" placeholder="Enter admin phone number"value="{{$user->phone_number}}" required>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function showUpdateModal(id, name, email, phone) {
-            // Populate the modal fields
-            document.getElementById('name').value = name;
-            document.getElementById('email').value = email;
-            document.getElementById('phone').value = phone;
-
-            // Update the form's action URL
-            document.getElementById('updateForm').action = `/user/${id}/update`;
-
-            // Show the modal
-            var updateModal = new bootstrap.Modal(document.getElementById('updateModal'));
-            updateModal.show();
-        }
-    </script>
-</body>
-</html>
+                        <div class="password-container">
+                            <label for="name">Password:</label>
+                            <input type="password" id="password" name="password" placeholder="Enter admin password"value="{{$user->password}}" required>
+                            <span class="toggle-eye" onclick="togglePassword()">👁</span>
+                        </div>
+                    
+                        <br><br>
+                        <script>
+                            function togglePassword() {
+                                const passwordField = document.getElementById("password");
+                                const toggleIcon = document.querySelector(".toggle-eye");
+                                
+                                if (passwordField.type === "password") {
+                                    passwordField.type = "text";
+                                    toggleIcon.textContent = "👁‍🗨"; // Switch to "eye closed" icon
+                                } else {
+                                    passwordField.type = "password";
+                                    toggleIcon.textContent = "👁"; // Switch back to "eye open" icon
+                                }
+                            }
+                        </script>
+                      <button type="submit">Add Admin</button>
+                      </div>
+                      
+                    </form>
+                </div>
+            </form>
+            </body>
+            </html>
