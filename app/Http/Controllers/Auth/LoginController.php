@@ -39,6 +39,22 @@ class LoginController extends Controller
        // $this->middleware('guest')->except('logout');
         //$this->middleware('auth')->only('logout');
    // }
-   
+   public function login(Request $request)
+   {
+       $input = $request->input('login');
+       $password = $request->input('password');
+
+       // Determine if input is email or phone number
+       $fieldType = filter_var($input, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone_number';
+
+       $credentials = [$fieldType => $input, 'password' => $password];
+
+       if (Auth::attempt($credentials)) {
+           return redirect()->intended('/'); // Redirect to the intended page
+       }
+
+       return redirect()->back()->withErrors([
+           'login' => 'These credentials do not match our records.',
+       ]);}
    
 }

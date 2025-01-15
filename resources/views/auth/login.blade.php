@@ -1,62 +1,90 @@
 @extends('layouts.app')
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
-@section('content')
-<script src="https://cdn.tailwindcss.com"></script>
-<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-      <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
-      <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">login to your account</h2>
-    </div>
-    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <form class="space-y-6"  method="POST" action="{{ route('login') }}">
-                        @csrf
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
-                        <div>
-                            <label for="email" class="block text-sm/6 font-medium text-gray-900">{{ __('Email Address') }}</label>
+    <!--styles-->
+    <link href="/css/log.css" rel="stylesheet">
+    @section('content')
+<section class="login-block">
+    <div class="container">
+	<div class="row">
+		<div class="col-md-4 login-sec">
+		    <h2 class="text-center">Register Now</h2>
+            <form method="POST" action="{{ route('login') }}">
+            @csrf
+		    <form class="login-form">
+                <div class="form-group">
+                <div>
+                    <label for="login">Email or Phone Number</label>
+                    <input id="login" class="form-control" type="text" name="login" required autofocus>
+                </div>
+            </div>
 
-                                      <!-- <input type="email" name="email" id="email" autocomplete="email" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">-->
-                                       <div class="mt-2">
-                                <input id="email" type="email" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+<div class="form-group">
+    <label for="password" class="text-uppercase">{{ __('Password') }}</label>
+    <input  id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="password">
+    @error('password')
+    <span class="invalid-feedback" role="alert">
+        <strong>{{ $message }}</strong>
+    </span>
+@enderror
+</div>
+    <div class="form-check">
+    <button type="submit" class="btn btn-login float-right">   {{ __('login') }}</button>
+  </div>
+  
+</form>
+</form>
+		</div>
+		<div class="col-md-8 banner-sec">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active">
+                        <img class="d-block img-fluid carousel-image" src="https://www.oneeducation.org.uk/wp-content/uploads/2020/08/Become-a-Medical-Laboratory-Technician.png" alt="First slide">
+                        <div class="carousel-caption d-none d-md-block">
+                            <div class="banner-text">
+                                <h2>Quick and Easy Registration for Reliable Lab Services</h2>
+                                <p>and Take Control of Your Health!
+                                    Your Health, Our Priority.</p>
                             </div>
                         </div>
-
-                        <div>
-                            <div class="flex items-center justify-between">
-                            <label for="password" class="block text-sm/6 font-medium text-gray-900">{{ __('Password') }}</label>
-                            
-                            </div>
-                            <div class="text-sm">
-                                <input id="password" type="password" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                                <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                                    {{ __('Login') }}
-                                </button>
-                                
-                                <div class="text-sm">
-                                @if (Route::has('password.request'))
-                                    <a class="font-semibold text-indigo-600 hover:text-indigo-500" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                       
-                    </form>
+                    </div>
+                  
+                 
                 </div>
             </div>
         </div>
-    </div>
+        
+        <style>
+            /* Ensure all images are the same size */
+            .carousel-inner {
+                height: 500px; /* Set a consistent height for the carousel */
+            }
+        
+            .carousel-image {
+                width: 100%; /* Full width of the carousel */
+                height: 100%; /* Full height of the carousel */
+                object-fit: cover; /* Maintain aspect ratio while filling the container */
+            }
+        
+            /* Optional: Style adjustments for captions */
+           
+        
+            .banner-sec {
+                margin: auto;
+                max-width: 100%;
+            }
+        </style>
+        
 </div>
+
+</section>
 @endsection

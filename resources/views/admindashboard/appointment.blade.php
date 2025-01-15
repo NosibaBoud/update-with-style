@@ -98,7 +98,7 @@
                                     <span class="label">Investigation(s):</span>
                                     @foreach ($appointment->user->mytests as $test)
                                         <br>
-                                        <span class="value">{{ $test->investigation->name }}</span>
+                                        <span class="value">{{ $test->name }}</span>
                                     @endforeach
                                 </div>
                             </div>

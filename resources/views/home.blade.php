@@ -2,6 +2,7 @@
 
 @section('content')
 <head>
+  <title>CheckUp Lab</title>
   <!--styles-->
   <link href="/css/main.css" rel="stylesheet">
 </head>
@@ -33,7 +34,7 @@
           </p>
       </div>
       <div class="about-image">
-        <img src="{{URL('/images/lab.jpg')}}" alt="">
+        <img src="{{URL('/images/aboutus.jpg')}}" alt="">
       </div>
   </div>
 </section>
@@ -70,7 +71,9 @@
       </div>
       <!-- Image -->
       <div class="location-image">
-        <img src="{{URL('/images/services.jpg')}}" alt="">
+        
+          <img src="{{URL('/images/background.jpg')}}" alt="">
+       
       </div>
   </div>
 </section>
@@ -78,7 +81,7 @@
   <div class="contact-us">
       <h3>Contact Us</h3>
       <ul>
-          <li><span class="icon">📞</span> Phone: +123 456 7890</li>
+          <li><span class="icon">📞</span> Phone: +218 456 7890</li>
           <li><span class="icon">📘</span> Facebook: <a href="#">@example</a></li>
           <li><span class="icon">📸</span> Instagram: <a href="#">@example</a></li>
       </ul>

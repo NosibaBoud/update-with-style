@@ -3,12 +3,13 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 @section('content') 
 <head>
+  <title>My Tests</title>
   <!--styles-->
   <link href="/css/index.css" rel="stylesheet">
 </head>
 <div class="bg-white shadow">
   <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-    <h1 class="text-3xl font-bold tracking-tight text-gray-900">My Investigaions</h1>
+    <h1 class="text-3xl font-bold tracking-tight text-gray-900">My Tests</h1>
   </div>
 </div>
   <body>
