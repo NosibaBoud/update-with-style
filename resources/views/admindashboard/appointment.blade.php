@@ -96,11 +96,18 @@
                                 </div>
                                 <div class="info-row">
                                     <span class="label">Investigation(s):</span>
-                                    @foreach ($appointment->user->mytests as $test)
-                                        <br>
-                                        <span class="value">{{ $test->name }}</span>
-                                    @endforeach
+                                    <ul>
+                                        @foreach ($appointment->investigations as $investigation)
+                                            <li>
+                                                <strong>{{ $investigation->name }}</strong> 
+                                                - ${{ $investigation->pivot->cost }} 
+                                                (Quantity: {{ $investigation->pivot->quantity }})
+                                            </li>
+                                        @endforeach
+                                    </ul>
                                 </div>
+                                
+                                
                             </div>
                             
                             <a href="{{ route('appointment.index') }}" class="back-btn">Back to Appointments</a>

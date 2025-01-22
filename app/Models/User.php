@@ -27,18 +27,23 @@ class User extends Authenticatable
         
     ];
  
-    public function tests() {
-        return $this->hasMany(Investigation::class);
-    }
-    public function mytests()
-{
-    return $this->hasMany(UserInvestigation::class);
-}
+   
+  
 public function homeAppointments()
 {
     return $this->hasMany(HomeAppointment::class);
 }
-
+public function mytests()
+{
+    return $this->hasManyThrough(
+        Investigation::class,
+        UserInvestigation::class,
+        'user_id',         
+        'id',              
+        'id',              
+        'investigation_id'  
+    );
+}
     /**
      * The attributes that should be hidden for serialization.
      *

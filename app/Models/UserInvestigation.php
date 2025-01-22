@@ -26,4 +26,6 @@ class UserInvestigation extends Model
     public function appointment(){
         return $this->hasMany(HomeAppointment::class);
     }
+  
+
 }
